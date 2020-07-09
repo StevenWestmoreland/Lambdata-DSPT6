@@ -23,4 +23,8 @@ def datesplit(X, col, drop):
     ''' For dataframe X, input a date feature col to create three new features for
     the dataframe: day, month, and year. Also allows for dropping of original feature '''
 
-    X['year'] = pd.to_datetime(X[''])
+    X['year'] = pd.to_datetime(X[col]).dt.year
+    X['month'] = pd.to_datetime(X[col]).dt.month
+    X['day'] = pd.to_datetime(X[col]).dt.day
+
+    return X
