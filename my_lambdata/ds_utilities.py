@@ -4,10 +4,6 @@ from sklearn.model_selection import train_test_split
 def enlarge(n): 
     ''' This function will multiply the input by 100 '''
     return n * 100
-
-if __name__ == '__main__':
-    y = int(input("Choose a number: "))
-    print(y, enlarge(y))
     
 def split(X, splitn, valn):
     ''' This function will take dataframe X and perform a train/test split by the
