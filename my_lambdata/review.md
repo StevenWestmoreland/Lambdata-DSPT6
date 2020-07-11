@@ -1,0 +1,2 @@
+- Layout of the code looks good
+- Docstrings were informative both for understanding what the class and methods do and for running their arguments. 
