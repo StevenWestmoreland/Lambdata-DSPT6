@@ -14,10 +14,10 @@ class Dog():
             print(f'{self.name} is not housebroken... :(')
 
 
-class Beagle(Dog):
-    pass
+#class Beagle(Dog):
+ #   def __init__(self, name, age, housebroke):
+  #      self.name = name
+   #     self.age = age
+    #    self.housebroke = housebroke
 
-if __name__ == "__main__":
-    
-    lucky = Dog('Lucky', 2, True)
-    breakpoint()
+    #def barks_alot(self, barker):
