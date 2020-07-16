@@ -1,0 +1,1 @@
+# Used by pytest to locate root of project directory

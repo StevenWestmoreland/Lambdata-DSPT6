@@ -5,6 +5,13 @@ from pdb import set_trace as breakpoint
 from IPython.display import display
 
 
+def enlarge(n):
+    ''' 
+    This function will multiply the input by 100 
+    '''
+    return n * 100
+
+
 class My_Data_Splitter():
     def __init__(self, df, features, target):
         self.df = df
@@ -38,6 +45,18 @@ class My_Data_Splitter():
             random_state=random_state, shuffle=shuffle)
         return X_train, X_val, X_test, y_train, y_val, y_test
 
+    def date_divider(self,date_col):
+        '''
+        Param df: dataframe object from the Pandas library, entire dataframe where the date_column is located is required
+        Param date_col: String value of the name of the date_column to be looked up in the passed dataframe
+        Return: modified dataframe with the new Year, Month, and Day columns attached to the end.
+        '''
+        converted_df = self.df.copy()
+        converted_df["Year"] = pd.to_datetime(converted_df[date_col]).dt.year
+        converted_df["Month"] = pd.to_datetime(converted_df[date_col]).dt.month
+        converted_df["Day"] = pd.to_datetime(converted_df[date_col]).dt.day
+        return converted_df
+
     def print_split_summary(self, X_train, X_val, X_test):
         print('######################## TRAINING DATA ########################')
         print(f'X_train Shape: {X_train.shape}')
@@ -51,7 +70,8 @@ class My_Data_Splitter():
         print(f'X_test Shape: {X_test.shape}')
         display(X_test.describe(include='all').transpose())
         print('')
-
+    
+    
 
 if __name__ == "__main__":
     raw_data = load_wine()
@@ -66,15 +86,3 @@ if __name__ == "__main__":
     splitter = My_Data_Splitter(df=df, features=['ash','hue'], target='target')
     X_train, X_val, X_test, y_train, y_val, y_test = splitter.train_validation_test_split()
     splitter.print_split_summary(X_train, X_val, X_test)
-
-def datesplit(X, col):
-    '''Split a time based feature into day, month, and year features.
-
-    Keyword arguments:
-    X -- dataframe containing the time feature
-    col -- time based feature
-    '''
-    X['year'] = pd.to_datetime(X[col]).dt.year
-    X['month'] = pd.to_datetime(X[col]).dt.month
-    X['day'] = pd.to_datetime(X[col]).dt.day
-    return X
