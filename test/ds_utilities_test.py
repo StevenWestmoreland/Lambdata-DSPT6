@@ -24,6 +24,7 @@ class TestDsUtilities(unittest.TestCase):
         converted_df = splitter.date_divider(date_col)
 
         self.assertEqual(expected_shape, converted_df.shape[1])
+        self.assertIn(20, df['age'].tolist())
 
 
 if __name__ == '__main__':
